@@ -43,15 +43,13 @@ public class ProveedorService {
 		var proveedorActual = repository.findById(id);
 
 		proveedorActual.ifPresentOrElse(p -> {
-			Proveedor.builder()
-				.nombre(proveedor.getNombre())
-				.dirección(proveedor.getDirección())
-				.telefono(proveedor.getTelefono())
-				.correoElectronico(proveedor.getCorreoElectronico())
-				.build();
+			p.setNombre(proveedor.getNombre());
+			p.setDireccion(proveedor.getDireccion());
+			p.setTelefono(proveedor.getTelefono());
+			p.setCorreoElectronico(proveedor.getCorreoElectronico());
 			repository.save(p);
-		}, () -> new NullPointerException()
-
-		);
+		}, () -> {
+			throw new NullPointerException("Proveedor no encontrado con ID: " + id);
+		});
 	}
 }

@@ -22,30 +22,36 @@ public class ProveedorController {
 	@GetMapping()
 	public String listarProveedores(Model model) {
 		model.addAttribute("proveedores", service.obtenerTodosProveedores());
-		return "lista-proveedor";
+		return "proveedor/lista-proveedor";
 	}
 	
 	@GetMapping("/crear")
 	public String mostrarFormularioCrear(Model model) {
 		model.addAttribute("proveedor", new Proveedor());
-		return "crear-proveedor";
+		return "proveedor/crear-proveedor";
 	}
 	
 	@PostMapping("/guardar")
 	public String crearProveedor(@ModelAttribute Proveedor proveedor) {
 		service.crearProveedor(proveedor);
-		return "redirect:lista-proveedor";
+		return "redirect:/proveedor";
+	}
+	
+	@PostMapping("/actualizar/{id}")
+	public String actualizarProveedor(@PathVariable Integer id, @ModelAttribute Proveedor proveedor) {
+		service.actualizarProveedor(id, proveedor);
+		return "redirect:/proveedor";
 	}
 	
 	@GetMapping("/editar/{id}")
 	public String mostrarFormularioEditar(@PathVariable Integer id, Model model) {
 		model.addAttribute("proveedor", service.obtenerProveedorById(id));
-		return "editar";
+		return "proveedor/editar-proveedor";
 	}
 	
 	@GetMapping("/eliminar/{id}")
 	public String eliminarProveedor(@PathVariable Integer id) {
 		service.eliminarProveedor(id);
-		return "redirect:lista-proveedor";
+		return "redirect:/proveedor";
 	}
 }
