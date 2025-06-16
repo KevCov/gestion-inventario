@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragment/fragmentos :: cabecera('Formulario agregar proveedor')}"></head>
+
+<body>
+	<section class="flex min-h-screen bg-gray-100">
+		<div th:replace="~{fragment/fragmentos :: navegacion}"></div>
+		<div class="w-full">
+			<form th:action="@{/proveedor/guardar}" method="post" th:object="${proveedor}"
+				class="w-8/12 mx-auto mt-8 p-12 bg-white relative overflow-x-auto shadow-md sm:rounded-lg">
+
+				<caption class="p-4 text-left bg-white text-gray-900">
+					<span class="block text-lg uppercase font-semibold">Agregar Proveedor</span>
+					<span class="block mt-1 text-sm font-normal text-gray-500">
+						Completa el siguiente formulario para registrar un nuevo proveedor en el sistema. Ingresa
+						información de contacto, dirección y otros datos relevantes.
+					</span>
+				</caption>
+
+				<div class="grid gap-6 mt-8 mb-6 md:grid-cols-2">
+					<div>
+						<label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+						<input type="text" id="nombre" th:field="*{nombre}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Ingrese el nombre" required />
+					</div>
+					<div>
+						<label for="direccion" class="block mb-2 text-sm font-medium text-gray-900">Dirección</label>
+						<input type="text" id="direccion" th:field="*{direccion}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Ingrese una dirección" required />
+					</div>
+					<div>
+						<label for="telefono" class="block mb-2 text-sm font-medium text-gray-900">Teléfono</label>
+						<input type="text" id="telefono" th:field="*{telefono}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Ingrese un número de telefono" required />
+					</div>
+					<div>
+						<label for="correoElectronico" class="block mb-2 text-sm font-medium text-gray-900">Correo
+							Electrónico</label>
+						<input type="email" id="correoElectronico" th:field="*{correoElectronico}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="correo@electronico.com" required />
+					</div>
+				</div>
+
+				<button type="submit"
+					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Guardar</button>
+			</form>
+		</div>
+	</section>
+</body>
+
+</html>

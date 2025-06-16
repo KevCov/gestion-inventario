@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragment/fragmentos :: cabecera('Formulario editar proveedor')}"></head>
+
+<body>
+	<section class="flex min-h-screen bg-gray-100">
+		<div th:replace="~{fragment/fragmentos :: navegacion}"></div>
+		<div class="w-full">
+			<form th:action="@{/proveedor/actualizar/{id}(id=${proveedor.id})}" method="post" th:object="${proveedor}" class="w-8/12 mx-auto mt-8 p-12 bg-white relative overflow-x-auto shadow-md sm:rounded-lg">
+				<caption class="p-4 text-left bg-white text-gray-900">
+					<span class="block text-lg uppercase font-semibold">Editar Proveedor</span>
+					<span class="block mt-1 text-sm font-normal text-gray-500">
+						Modifica la información del proveedor seleccionado. Asegúrate de actualizar correctamente los
+						datos de contacto, dirección y cualquier otro campo relevante para mantener registros precisos
+						en el sistema.
+					</span>
+				</caption>
+				<div
+					class="grid gap-6 mt-8 mb-6 md:grid-cols-2">
+					<div>
+						<label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+						<input type="text" id="nombre" th:field="*{nombre}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="John" required />
+					</div>
+					<div>
+						<label for="direccion" class="block mb-2 text-sm font-medium text-gray-900">Dirección</label>
+						<input type="text" id="direccion" th:field="*{direccion}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Doe" required />
+					</div>
+					<div>
+						<label for="telefono" class="block mb-2 text-sm font-medium text-gray-900">Telefono</label>
+						<input type="text" id="telefono" th:field="*{telefono}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Flowbite" required />
+					</div>
+					<div>
+						<label for="correoElectronico" class="block mb-2 text-sm font-medium text-gray-900">Correo
+							Electronico</label>
+						<input type="text" id="correoElectronico" th:field="*{correoElectronico}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							 required />
+					</div>
+				</div>
+				<button type="submit"
+					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+			</form>
+
+		</div>
+	</section>
+</body>
+
+</html>
