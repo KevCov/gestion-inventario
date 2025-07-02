@@ -6,6 +6,7 @@
 <body>
 	<section class="flex min-h-screen bg-gray-100">
 		<div th:replace="~{fragment/fragmentos :: navegacion}"></div>
+
 		<div class="w-full">
 			<div class="sm:px-0 mx-auto w-11/12 mt-10">
 				<a th:href="@{/producto/crear}"
@@ -13,7 +14,6 @@
 					AGREGAR
 				</a>
 			</div>
-
 			<div class="w-11/12 mx-auto mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
 				<table class="w-full text-sm text-left rtl:text-right text-gray-500">
 					<caption class="p-6 text-left bg-white text-gray-900">
@@ -24,7 +24,6 @@
 							registros.
 						</span>
 					</caption>
-
 					<thead class="text-xs text-gray-700 uppercase bg-gray-200">
 						<tr>
 							<th scope="col" class="px-6 py-3">
@@ -61,14 +60,21 @@
 							<td th:text="${producto.stock}" class="px-6 py-4">
 							</td>
 							<td class="py-4">
-								<a th:href="@{/producto/editar/{id}(id=${producto.productId})}" class="font-medium text-blue-600 hover:underline">Editar</a>
-								 - 
-								<a th:href="@{/producto/eliminar/{id}(id=${producto.productId})}" class="font-medium text-red-600 hover:underline">Eliminar</a>
+								<a th:href="@{/producto/editar/{id}(id=${producto.productId})}"
+									class="font-medium text-blue-600 hover:underline">Editar</a>
+								-
+								<a th:href="@{/producto/eliminar/{id}(id=${producto.productId})}"
+									class="font-medium text-red-600 hover:underline">Eliminar</a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+
+			<div class="w-11/12 mx-auto"
+				th:replace="~{fragment/fragmentos :: paginacion(currentPage=${currentPage}, totalPages=${totalPages}, url='/producto')}">
+			</div>
+
 		</div>
 	</section>
 </body>

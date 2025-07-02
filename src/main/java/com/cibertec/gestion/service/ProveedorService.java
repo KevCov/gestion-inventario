@@ -1,7 +1,7 @@
 package com.cibertec.gestion.service;
 
-import java.util.Collections;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,10 @@ public class ProveedorService {
 	@Autowired
 	private ProveedorRepository repository;
 
-	public List<Proveedor> obtenerTodosProveedores() {
-		var proveedores = repository.findAll();
+	public Page<Proveedor> obtenerTodosProveedores(Pageable pageable) {
+		var proveedores = repository.findAll(pageable);
 		if (proveedores.isEmpty())
-			return Collections.emptyList();
+			return Page.empty();
 
 		return proveedores;
 	}

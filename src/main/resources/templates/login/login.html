@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragment/fragmentos :: cabecera('Login')}"></head>
+
+<body class="bg-cover bg-no-repeat bg-center bg-[url('/img/background_inventario.jpg')]">
+	<section class="m-auto mt-[190px] h-[600px] w-[380px]">
+		<!-- From Uiverse.io by Cybercom682 --> 
+		<form th:action="@{/}" method="post"
+		  class="bg-white shadow-2xl rounded-2xl overflow-hidden border-4 border-blue-400"
+		>
+		  <div class="px-8 py-10 md:px-10">
+		    <h2
+		      class="text-4xl font-extrabold text-center text-zinc-800"
+		    >
+		      Bienvenido!
+		    </h2>
+		    <p class="text-center text-zinc-600 mt-3">
+		      Ingresa tus credenciales
+		    </p>
+		    <div class="mt-10">
+		      <div class="relative">
+		        <label
+		          class="block mb-3 text-sm font-medium text-zinc-600"
+		          for="email"
+		          >Email</label
+		        >
+		        <input
+		          placeholder="correo@example.com"
+		          class="block w-full px-4 py-3 mt-2 text-zinc-800 bg-white border-2 rounded-lg focus:border-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-400"
+		          name="email"
+		          id="email"
+		          type="email"
+		        />
+		      </div>
+		      <div class="mt-6">
+		        <label
+		          class="block mb-3 text-sm font-medium text-zinc-600"
+		          for="password"
+		          >Password</label
+		        >
+		        <input
+		          placeholder="••••••••"
+		          class="block w-full px-4 py-3 mt-2 text-zinc-800 bg-white border-2 rounded-lg focus:border-blue-500 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-400"
+		          name="password"
+		          id="password"
+		          type="password"
+		        />
+		      </div>
+		      <div class="mt-10">
+		        <button
+		          class="w-full cursor-pointer px-4 py-3 font-semibold tracking-wide text-white transition-colors duration-200 transform bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-4 focus:ring-blue-400"
+		          type="submit"
+		        >
+		          Login
+		        </button>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="px-8 py-4 bg-blue-200">
+		    <div class="text-sm text-blue-900 text-center">
+		      <a class="font-medium underline" href="#">Registrate</a>
+		    </div>
+		  </div>
+		</form>
+
+	</section>
+</body>
+
+</html>

@@ -1,6 +1,9 @@
 package com.cibertec.gestion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +23,16 @@ public class ProductoController {
 	private ProductoService service;
 
 	@GetMapping()
-	public String listarProductos(Model model) {
-	    model.addAttribute("productos", service.obtenerTodosProductos());
+	public String listarProductos(Model model,@PageableDefault(size = 10, page = 0) Pageable pageable) {
+        Page<Producto> paginaDeProductos = service.obtenerTodosProductos(pageable);
+
+        model.addAttribute("productos", paginaDeProductos.getContent());
+        model.addAttribute("currentPage", paginaDeProductos.getNumber());
+        model.addAttribute("totalPages", paginaDeProductos.getTotalPages());
+        model.addAttribute("totalItems", paginaDeProductos.getTotalElements());
+        
 	    return "producto/lista-producto";
 	}
-
-
 
 	@GetMapping("/crear")
 	public String mostrarFormularioCrear(Model model) {

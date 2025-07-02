@@ -1,5 +1,8 @@
 package com.cibertec.gestion.controller;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +23,14 @@ public class ProveedorController {
 	private ProveedorService service;
 	
 	@GetMapping()
-	public String listarProveedores(Model model) {
-		model.addAttribute("proveedores", service.obtenerTodosProveedores());
+	public String listarProveedores(Model model,@PageableDefault(size = 10, page = 0) Pageable pageable) {
+		Page<Proveedor> paginaDeProveedores = service.obtenerTodosProveedores(pageable);
+
+        model.addAttribute("proveedores", paginaDeProveedores.getContent());
+        model.addAttribute("currentPage", paginaDeProveedores.getNumber());
+        model.addAttribute("totalPages", paginaDeProveedores.getTotalPages());
+        model.addAttribute("totalItems", paginaDeProveedores.getTotalElements());
+        
 		return "proveedor/lista-proveedor";
 	}
 	
