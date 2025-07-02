@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragment/fragmentos :: cabecera('Formulario agregar producto')}"></head>
+
+<body>
+	<section class="flex min-h-screen bg-gray-100">
+		<div th:replace="~{fragment/fragmentos :: navegacion}"></div>
+		<div class="w-full">
+			<form th:action="@{/producto/guardar}" method="post" th:object="${producto}"
+				class="w-8/12 mx-auto mt-8 p-12 bg-white relative overflow-x-auto shadow-md sm:rounded-lg">
+
+				<caption class="p-4 text-left bg-white text-gray-900">
+					<span class="block text-lg uppercase font-semibold">Agregar Producto</span>
+					<span class="block mt-1 text-sm font-normal text-gray-500">
+						Completa el siguiente formulario para registrar un nuevo producto en el sistema. Ingresa
+						información sobre el nombre, precio, descripción y otros datos relevantes.
+					</span>
+				</caption>
+
+				<div class="grid gap-6 mt-8 mb-6 md:grid-cols-2">
+					<div>
+						<label for="nombreProducto" class="block mb-2 text-sm font-medium text-gray-900">Nombre del Producto</label>
+						<input type="text" id="nombreProducto" th:field="*{nombreProducto}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Ingrese el nombre del producto" required />
+					</div>
+					<div>
+						<label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900">Descripción</label>
+						<input type="text" id="descripcion" th:field="*{descripcion}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Ingrese una descripción" required />
+					</div>
+					<div>
+						<label for="precioCompra" class="block mb-2 text-sm font-medium text-gray-900">Precio de Compra</label>
+						<input type="number" step="0.01" id="precioCompra" th:field="*{precioCompra}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Ingrese el precio de compra" required />
+					</div>
+					<div>
+						<label for="precioVenta" class="block mb-2 text-sm font-medium text-gray-900">Precio de Venta</label>
+						<input type="number" step="0.01" id="precioVenta" th:field="*{precioVenta}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Ingrese el precio de venta" required />
+					</div>
+					<div>
+						<label for="stock" class="block mb-2 text-sm font-medium text-gray-900">Stock</label>
+						<input type="number" id="stock" th:field="*{stock}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Ingrese el stock disponible" required />
+					</div>
+				</div>
+
+				<button type="submit"
+					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Guardar Producto</button>
+			</form>
+		</div>
+	</section>
+</body>
+
+</html>
