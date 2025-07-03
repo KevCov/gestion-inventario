@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title th:text="${titulo}">Título por defecto</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" th:href="@{/img/icon.png}">
 	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 	<style type="text/tailwindcss"> @theme {        --color-clifford: #da373d;      }    </style>
 </head>
@@ -32,6 +33,16 @@
 		</a>
 	</div>
 	<div th:fragment="navegacion" class="card w-72 p-5 shadow-md shadow-purple-200/50 rounded-md h-screen bg-blue-400">
+		<div class="flex flex-col my-5 items-center">
+		        <img
+		          src="/img/almacen.png"
+		          alt="LiquiApp Logo"
+		          className="w-16 h-16 mx-auto mb-5"
+		        />
+		        <h2 class="text-3xl mt-2 font-semibold text-gray-800">
+		          Guarda<span class="text-white ml-1">Todo</span>
+		        </h2>
+		      </div>
 		<ul class="w-full flex flex-col gap-2">
 			<li class="flex-center cursor-pointer p-16-semibold w-full whitespace-nowrap">
 				<a th:href="@{/proveedor}"
@@ -81,6 +92,22 @@
 					Usuarios
 				</a>
 			</li>
+			<li class="flex-center cursor-pointer p-16-semibold w-full whitespace-nowrap">
+							<a th:href="@{/abastecimiento}"
+								class="p-16-semibold flex size-full gap-4 p-4 group font-semibold rounded-full bg-cover hover:bg-white hover:shadow-inner hover:text-black focus:text-white text-white transition-all ease-linear">
+								<svg stroke="#000000" class="icon glyph size-6 group-focus:fill-white group-focus:stroke-white"
+									id="dashboard-alt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000">
+									<g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+									<g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+									<g id="SVGRepo_iconCarrier">
+										<path d="M14,10V22H4a2,2,0,0,1-2-2V10Z"></path>
+										<path d="M22,10V20a2,2,0,0,1-2,2H16V10Z"></path>
+										<path d="M22,4V8H2V4A2,2,0,0,1,4,2H20A2,2,0,0,1,22,4Z"></path>
+									</g>
+								</svg>
+								Abastecimiento
+							</a>
+						</li>
 			<li class="flex-center cursor-pointer p-16-semibold w-full whitespace-nowrap">
 				<a th:href="@{/}"
 					class="p-16-semibold flex size-full gap-4 p-4 group font-semibold rounded-full bg-cover hover:bg-white hover:shadow-inner hover:text-black focus:text-white text-white transition-all ease-linear">

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragment/fragmentos :: cabecera('Lista de ingresos')}"></head>
+
+<body>
+	<section class="flex min-h-screen bg-gray-100">
+		<div th:replace="~{fragment/fragmentos :: navegacion}"></div>
+
+		<div class="w-full">
+			<div class="sm:px-0 mx-auto w-11/12 mt-10">
+				<a th:href="@{/abastecimiento}"
+					class="inline-flex font-semibold bg-gray-600 h-[42px] mb-3 px-6 text-md items-center justify-center rounded-xl cursor-pointer relative overflow-hidden transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-[rgb(119,144,214)] before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]">
+					AGREGAR
+				</a>
+			</div>
+			<div class="w-11/12 mx-auto mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
+				<table class="w-full text-sm text-left rtl:text-right text-gray-500">
+					<caption class="p-6 text-left bg-white text-gray-900">
+					    <span class="block text-lg uppercase font-semibold">Lista de Ingresos</span>
+					    <span class="block mt-1 text-sm font-normal text-gray-500">
+					        A continuación se detalla cada una de las transacciones de ingreso.
+					    </span>
+					</caption>
+					<thead class="text-xs text-gray-700 uppercase bg-gray-200">
+						<tr>
+							<th scope="col" class="px-6 py-3">
+								Id
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Fecha Ingreso
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Producto
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Proveedor
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Cantidad
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Costo Total
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Acción
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ingreso : ${abastecimientos}" class="bg-white hover:bg-blue-200">
+							<td th:text="${ingreso.abastecimientoId}" class="px-6 py-4">
+							</td>
+							<td th:text="${ingreso.fecha}" class="px-6 py-4">
+							</td>
+							<td th:text="${ingreso.producto.nombreProducto}" class="px-6 py-4">
+							</td>
+							<td th:text="${ingreso.proveedor.nombre}" class="px-6 py-4">
+							</td>
+							<td th:text="${ingreso.cantidad}" class="px-12 py-4">
+							</td>
+							<td th:text="${ingreso.costoTotal}" class="px-10 py-4">
+							</td>
+							<td class="px-6 py-4">
+								<a th:href="@{/abastecimiento/eliminar/{id}(id=${ingreso.abastecimientoId})}"
+									class="font-medium text-red-600 hover:underline">Eliminar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="w-11/12 mx-auto"
+				th:replace="~{fragment/fragmentos :: paginacion(currentPage=${currentPage}, totalPages=${totalPages}, url='/producto')}">
+			</div>
+
+		</div>
+	</section>
+</body>
+
+</html>

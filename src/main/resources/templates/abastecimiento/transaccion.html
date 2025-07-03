@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragment/fragmentos :: cabecera('Registrar Abastecimiento')}"></head>
+
+<body>
+	<section class="flex min-h-screen bg-gray-100">
+		<div th:replace="~{fragment/fragmentos :: navegacion}"></div>
+
+		<div class="w-full">
+			<form th:action="@{/abastecimiento/registrar}" method="post" th:object="${abastecimiento}"
+				class=" bg-white m-auto w-[700px] mt-[190px] h-auto p-10 rounded-lg shadow-lg">
+				<div class="flex flex-wrap gap-5 items-center w-full max-md:max-w-full mb-10">
+					<div
+						class="flex flex-wrap flex-1 shrink gap-5 items-center self-stretch my-auto basis-0 min-w-[240px] max-md:max-w-full">
+
+						<div class="flex flex-col self-stretch my-auto min-w-[240px]">
+							<div class="text-lg uppercase font-semibold">Ingresar Abastecimiento</div>
+							<div class="mt-2 text-sm text-gray-500">
+								Ingrese los datos del abastecimiento que desea registrar.
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="grid grid-cols-2 gap-6 mb-10">
+					<div id="input" class="relative">
+						<select type="text" id="producto"
+							class="block w-full text-sm h-[50px] px-4 text-slate-900 bg-white rounded-[8px] border border-violet-200 appearance-none focus:border-transparent focus:outline focus:outline-2 focus:outline-primary focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px]"
+							value="" th:field="*{productoId}" />
+						<option value="" disabled selected>Seleccione un producto</option>
+						<option th:each=" producto : ${productos}" th:value="${producto.productId}"
+							th:text="${producto.nombreProducto}">
+						</option>
+						</select>
+						<label for="producto"
+							class="peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-white disabled:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+							Producto
+						</label>
+					</div>
+
+					<div id="input" class="relative">
+						<select type="text" id="proveedor"
+							class="block w-full text-sm h-[50px] px-4 text-slate-900 bg-white rounded-[8px] border border-violet-200 appearance-none focus:border-transparent focus:outline focus:outline-2 focus:outline-primary focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px]"
+							value="" th:field="*{proveedorId}" />
+						<option value="" disabled selected>Seleccione un proveedor</option>
+						<option th:each=" proveedor : ${proveedores}" th:value="${proveedor.id}"
+							th:text="${proveedor.nombre}"></option>
+						</select>
+						<label for="proveedor"
+							class="peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-white disabled:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+							Proveedor
+						</label>
+					</div>
+
+					<div id="input" class="relative">
+						<input type="date" id="fechaIngreso" th:field="*{fechaAbastecimiento}" class=" block w-full text-sm h-[50px] px-4 text-slate-900 bg-white rounded-[8px] border border-violet-200
+							appearance-none focus:border-transparent focus:outline focus:outline-2 focus:outline-primary
+							focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500
+							invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap" value="" />
+						<label for="fechaIngreso"
+							class="peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-white disabled:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+							Fecha de ingreso
+						</label>
+					</div>
+
+					<div id="input" class="relative">
+						<input type="number" id="cantidad" th:field="*{cantidad}" class=" block w-full text-sm h-[50px] px-4 text-slate-900 bg-white rounded-[8px] border border-violet-200
+							appearance-none focus:border-transparent focus:outline focus:outline-2 focus:outline-primary
+							focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500
+							invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap" placeholder="Cantidad" value="" />
+						<label for="cantidad"
+							class="peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-white disabled:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+							Cantidad
+						</label>
+					</div>
+
+					<div id="input" class="relative">
+						<input type="number" step="any" id="costoTotal" th:field="*{costoTotal}" class=" block w-full text-sm h-[50px] px-4 text-slate-900 bg-white rounded-[8px] border border-violet-200
+							appearance-none focus:border-transparent focus:outline focus:outline-2 focus:outline-primary
+							focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500
+							invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap" value=""
+							placeholder="Costo total" />
+						<label for="costoTotal"
+							class="peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-white disabled:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+							Costo Total
+						</label>
+					</div>
+				</div>
+
+				<div class="sm:flex sm:flex-row-reverse flex gap-4">
+					<button
+						class="inline-flex font-semibold bg-gray-600 h-[42px] mb-3 px-6 text-md items-center justify-center rounded-xl cursor-pointer relative overflow-hidden transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-[rgb(119,144,214)] before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]"
+						type="submit">
+						<div class="flex gap-2 items-center">Dar Ingreso</div>
+					</button>
+					<a th:href="@{/abastecimiento/listar}"
+						class="inline-flex font-semibold bg-gray-600 h-[42px] mb-3 px-6 text-md items-center justify-center rounded-xl cursor-pointer relative overflow-hidden transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-[rgb(119,144,214)] before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]">
+						Listar Ingresos
+					</a>
+				</div>
+			</form>
+		</div>
+	</section>
+</body>
+
+</html>

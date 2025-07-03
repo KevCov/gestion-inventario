@@ -17,11 +17,19 @@ public class ProductoService {
 	@Autowired
 	private ProductoRepository repository;
 
-	public Page<Producto> obtenerTodosProductos(Pageable pageable) {
+	public Page<Producto> obtenerTodosProductosPaginado(Pageable pageable) {
 		var productos = repository.findAll(pageable);
 		if (productos.isEmpty())
 			return Page.empty();
-		System.out.println(productos);
+
+		return productos;
+	}
+
+	public List<Producto> obtenerTodosProductos() {
+		var productos = repository.findAll();
+		if (productos.isEmpty())
+			return Collections.emptyList();
+
 		return productos;
 	}
 
@@ -54,5 +62,31 @@ public class ProductoService {
 		}, () -> {
 			throw new NullPointerException("Producto no encontrado con ID: " + id);
 		});
+	}
+	
+	public void disminuirStock(Integer id, Integer cantidad) {
+		var producto = repository.findById(id);
+		if (producto.isPresent()) {
+			Producto p = producto.get();
+			if (p.getStock() >= cantidad) {
+				p.setStock(p.getStock() - cantidad);
+				repository.save(p);
+			} else {
+				throw new IllegalArgumentException("Stock insuficiente para el producto con ID: " + id);
+			}
+		} else {
+			throw new NullPointerException("Producto no encontrado con ID: " + id);
+		}
+	}
+
+	public void aumentarStock(Integer id, Integer cantidad) {
+		var producto = repository.findById(id);
+		if (producto.isPresent()) {
+			Producto p = producto.get();
+			p.setStock(p.getStock() + cantidad);
+			repository.save(p);
+		} else {
+			throw new NullPointerException("Producto no encontrado con ID: " + id);
+		}
 	}
 }

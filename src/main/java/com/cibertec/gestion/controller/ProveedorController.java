@@ -24,7 +24,7 @@ public class ProveedorController {
 	
 	@GetMapping()
 	public String listarProveedores(Model model,@PageableDefault(size = 10, page = 0) Pageable pageable) {
-		Page<Proveedor> paginaDeProveedores = service.obtenerTodosProveedores(pageable);
+		Page<Proveedor> paginaDeProveedores = service.obtenerTodosProveedoresPaginado(pageable);
 
         model.addAttribute("proveedores", paginaDeProveedores.getContent());
         model.addAttribute("currentPage", paginaDeProveedores.getNumber());

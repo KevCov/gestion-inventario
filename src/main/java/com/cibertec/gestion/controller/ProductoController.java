@@ -24,7 +24,7 @@ public class ProductoController {
 
 	@GetMapping()
 	public String listarProductos(Model model,@PageableDefault(size = 10, page = 0) Pageable pageable) {
-        Page<Producto> paginaDeProductos = service.obtenerTodosProductos(pageable);
+        Page<Producto> paginaDeProductos = service.obtenerTodosProductosPaginado(pageable);
 
         model.addAttribute("productos", paginaDeProductos.getContent());
         model.addAttribute("currentPage", paginaDeProductos.getNumber());
