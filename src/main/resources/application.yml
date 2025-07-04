@@ -3,9 +3,9 @@ spring:
     name: gestion-inventario
 
   datasource:
-    url: jdbc:mysql://localhost:3306/inventario?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://mysqlcibertec.mysql.database.azure.com:3306/inventario
+    username: administrador
+    password: '@i202316885'
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:

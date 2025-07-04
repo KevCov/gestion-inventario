@@ -1,5 +1,6 @@
 package com.cibertec.gestion.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.cibertec.gestion.dto.AbastecimientoDto;
+import com.cibertec.gestion.dto.AbastecimientoReporte;
 import com.cibertec.gestion.entity.Abastecimiento;
+import com.cibertec.gestion.entity.Producto;
+import com.cibertec.gestion.entity.Proveedor;
 import com.cibertec.gestion.repository.AbastecimientoRepository;
 
 import jakarta.transaction.Transactional;
@@ -71,5 +75,23 @@ public class AbastecimientoService {
 		
 		repository.deleteById(id);
 		log.info("Abastecimiento con ID {} eliminado", id);
+	}
+	
+	public List<AbastecimientoReporte> obtenerTodo() {
+		List<Abastecimiento> todo = repository.findAll();
+		
+		return todo.stream().map(a -> {
+			Producto p = productoService.obtenerProductoById(a.getProducto().getProductId());
+			Proveedor pro = proveedorService.obtenerProveedorById(a.getProveedor().getId());
+			
+			return AbastecimientoReporte.builder()
+			.abastecimientoId(a.getAbastecimientoId())
+			.cantidad(a.getCantidad())
+			.costoTotal(a.getCostoTotal())
+			.fecha(a.getFecha())
+			.product_id(p.getNombreProducto())
+			.proveedor_id(pro.getNombre())
+			.build();
+		}).toList();
 	}
 }

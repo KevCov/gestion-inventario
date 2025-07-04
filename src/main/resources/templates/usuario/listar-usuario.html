@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragment/fragmentos :: cabecera('Lista de usuarios')}"></head>
+
+<body>
+	<section class="flex min-h-screen bg-gray-100">
+		<div th:replace="~{fragment/fragmentos :: navegacion}"></div>
+		<div class="w-full">
+			<div class="sm:px-0 mx-auto w-11/12 mt-10">
+				<a th:href="@{/usuario/crear}"
+					class="inline-flex font-semibold bg-gray-600 h-[42px] mb-3 px-6 text-md items-center justify-center rounded-xl cursor-pointer relative overflow-hidden transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-[rgb(119,144,214)] before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]">
+					AGREGAR
+				</a>
+			</div>
+
+			<div class="w-11/12 mx-auto mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
+				<table class="w-full text-sm text-left rtl:text-right text-gray-500">
+					<caption class="p-6 text-left bg-white text-gray-900">
+						<span class="block text-lg uppercase font-semibold">Lista de Usuarios</span>
+						<span class="block mt-1 text-sm font-normal text-gray-500">
+							Consulta y gestiona la relación de usuarios activos registrados en el sistema. Esta lista
+							te permite visualizar información clave y acceder a opciones para editar o eliminar
+							registros.
+						</span>
+					</caption>
+
+					<thead class="text-xs text-gray-700 uppercase bg-gray-200">
+						<tr>
+							<th scope="col" class="px-6 py-3">
+								Nombre usuario
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Apellido usuario
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Dirección
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Telefono
+							</th>
+							<th scope="col" class="px-6 py-3">
+							    Email
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Acción
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cliente : ${clientes}" class="bg-white hover:bg-blue-200">
+							<th th:text="${cliente.nombre}" scope="row"
+								class="px-8 py-4 font-medium text-gray-900 whitespace-nowrap">
+							</th>
+							<td th:text="${cliente.apellido}" class="px-6 py-4">
+							</td>
+							<td th:text="${cliente.telefono}" class="px-6 py-4">
+							</td>
+							<td th:text="${cliente.direccion}" class="px-6 py-4">
+							</td>
+							<td th:text="${cliente.email}" class="px-6 py-4">
+							</td>
+							<td class="py-4">
+								<a th:href="@{/usuario/editar/{id}(id=${cliente.id})}" class="font-medium text-blue-600 hover:underline">Editar</a>
+								 - 
+								<a th:href="@{/usuario/eliminar/{id}(id=${cliente.id})}" class="font-medium text-red-600 hover:underline">Eliminar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

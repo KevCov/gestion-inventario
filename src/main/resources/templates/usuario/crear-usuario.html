@@ -1,59 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragment/fragmentos :: cabecera('Formulario editar proveedor')}"></head>
+<head th:replace="~{fragment/fragmentos :: cabecera('Formulario crear usuario')}"></head>
 
 <body>
 	<section class="flex min-h-screen bg-gray-100">
 		<div th:replace="~{fragment/fragmentos :: navegacion}"></div>
 		<div class="w-full">
-			<form th:action="@{/proveedor/actualizar/{id}(id=${proveedor.id})}" method="post" th:object="${proveedor}"
+			<form th:action="@{/usuario/guardar}" method="post" th:object="${usuario}"
 				class="w-8/12 mx-auto mt-8 p-12 bg-white relative overflow-x-auto shadow-md sm:rounded-lg">
+
 				<caption class="p-4 text-left bg-white text-gray-900">
-					<span class="block text-lg uppercase font-semibold">Editar Proveedor</span>
+					<span class="block text-lg uppercase font-semibold">Agregar Usuario</span>
 					<span class="block mt-1 text-sm font-normal text-gray-500">
-						Modifica la información del proveedor seleccionado. Asegúrate de actualizar correctamente los
-						datos de contacto, dirección y cualquier otro campo relevante para mantener registros precisos
-						en el sistema.
+						Completa el siguiente formulario para registrar un nuevo usuario en el sistema. Ingresa
+						información de contacto, dirección y otros datos relevantes.
 					</span>
 				</caption>
+
 				<div class="grid gap-6 mt-8 mb-6 md:grid-cols-2">
 					<div>
 						<label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
 						<input type="text" id="nombre" th:field="*{nombre}"
 							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							placeholder="John" required />
+							placeholder="Ingrese el nombre" required />
+					</div>
+					<div>
+						<label for="apellido" class="block mb-2 text-sm font-medium text-gray-900">Apellido</label>
+						<input type="text" id="apellido" th:field="*{apellido}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="Ingrese el apellido" required />
 					</div>
 					<div>
 						<label for="direccion" class="block mb-2 text-sm font-medium text-gray-900">Dirección</label>
 						<input type="text" id="direccion" th:field="*{direccion}"
 							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							placeholder="Doe" required />
+							placeholder="Ingrese una dirección" required />
 					</div>
 					<div>
-						<label for="telefono" class="block mb-2 text-sm font-medium text-gray-900">Telefono</label>
+						<label for="telefono" class="block mb-2 text-sm font-medium text-gray-900">Teléfono</label>
 						<input type="text" id="telefono" th:field="*{telefono}"
 							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							placeholder="Flowbite" required />
+							placeholder="Ingrese un número de telefono" required />
 					</div>
 					<div>
-						<label for="correoElectronico" class="block mb-2 text-sm font-medium text-gray-900">Correo
-							Electronico</label>
-						<input type="text" id="correoElectronico" th:field="*{correoElectronico}"
+						<label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+						<input type="email" id="email" th:field="*{email}"
 							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							required />
+							placeholder="correo@electronico.com" required />
+					</div>
+					<div>
+						<label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+						<input type="password" id="password" th:field="*{password}"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							placeholder="**********" required />
 					</div>
 				</div>
+
 				<button type="submit"
 				class="inline-flex font-semibold ml-1 bg-gray-600 h-[42px] mb-3 px-6 text-md items-center justify-center rounded-xl cursor-pointer relative overflow-hidden transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-[rgb(119,144,214)] before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]">
-					Actualizar
+					Guardar
 				</button>
-				<a th:href="@{/proveedor}"
+				<a th:href="@{/usuario}"
 					class="inline-flex font-semibold ml-1 bg-gray-600 h-[42px] mb-3 px-6 text-md items-center justify-center rounded-xl cursor-pointer relative overflow-hidden transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-[rgb(119,144,214)] before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]">
 					Cancelar
 				</a>
 			</form>
-
 		</div>
 	</section>
 </body>

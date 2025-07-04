@@ -7,7 +7,8 @@
 	<section class="flex min-h-screen bg-gray-100">
 		<div th:replace="~{fragment/fragmentos :: navegacion}"></div>
 		<div class="w-full">
-			<form th:action="@{/producto/actualizar/{id}(id=${producto.productId})}" method="post" th:object="${producto}" 
+			<form th:action="@{/producto/actualizar/{id}(id=${producto.productId})}" method="post"
+				th:object="${producto}"
 				class="w-8/12 mx-auto mt-8 p-12 bg-white relative overflow-x-auto shadow-md sm:rounded-lg">
 				<caption class="p-4 text-left bg-white text-gray-900">
 					<span class="block text-lg uppercase font-semibold">Editar Producto</span>
@@ -18,25 +19,29 @@
 				</caption>
 				<div class="grid gap-6 mt-8 mb-6 md:grid-cols-2">
 					<div>
-						<label for="nombreProducto" class="block mb-2 text-sm font-medium text-gray-900">Nombre del Producto</label>
+						<label for="nombreProducto" class="block mb-2 text-sm font-medium text-gray-900">Nombre del
+							Producto</label>
 						<input type="text" id="nombreProducto" th:field="*{nombreProducto}"
 							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
 							placeholder="Ingrese el nombre del producto" required />
 					</div>
 					<div>
-						<label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900">Descripción</label>
+						<label for="descripcion"
+							class="block mb-2 text-sm font-medium text-gray-900">Descripción</label>
 						<input type="text" id="descripcion" th:field="*{descripcion}"
 							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
 							placeholder="Ingrese una descripción" required />
 					</div>
 					<div>
-						<label for="precioCompra" class="block mb-2 text-sm font-medium text-gray-900">Precio de Compra</label>
+						<label for="precioCompra" class="block mb-2 text-sm font-medium text-gray-900">Precio de
+							Compra</label>
 						<input type="number" step="0.01" id="precioCompra" th:field="*{precioCompra}"
 							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
 							placeholder="Ingrese el precio de compra" required />
 					</div>
 					<div>
-						<label for="precioVenta" class="block mb-2 text-sm font-medium text-gray-900">Precio de Venta</label>
+						<label for="precioVenta" class="block mb-2 text-sm font-medium text-gray-900">Precio de
+							Venta</label>
 						<input type="number" step="0.01" id="precioVenta" th:field="*{precioVenta}"
 							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
 							placeholder="Ingrese el precio de venta" required />
@@ -49,7 +54,13 @@
 					</div>
 				</div>
 				<button type="submit"
-					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Guardar Producto</button>
+				class="inline-flex font-semibold ml-1 bg-gray-600 h-[42px] mb-3 px-6 text-md items-center justify-center rounded-xl cursor-pointer relative overflow-hidden transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-[rgb(119,144,214)] before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]">
+					Actualizar
+				</button>
+				<a th:href="@{/producto}"
+					class="inline-flex font-semibold ml-1 bg-gray-600 h-[42px] mb-3 px-6 text-md items-center justify-center rounded-xl cursor-pointer relative overflow-hidden transition-all duration-500 ease-in-out shadow-md hover:scale-105 hover:shadow-lg before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-[rgb(119,144,214)] before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-xl hover:before:left-0 text-[#fff]">
+					Cancelar
+				</a>
 			</form>
 		</div>
 	</section>
